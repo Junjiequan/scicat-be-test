@@ -190,9 +190,7 @@ jobs:
           npm install
           npm run build
           ls -la
-          cd dist
-          ls -la
-          npm publish --access public
+          npm publish ./dist --access public
         working-directory: ./sdk/typescript-fetch/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
