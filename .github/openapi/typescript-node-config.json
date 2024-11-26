@@ -1,0 +1,5 @@
+{
+  "generatorName": "typescript-angular",
+  "npmName": "@scicatproject/scicat-ts-node-test",
+  "supportsES6": true
+}
