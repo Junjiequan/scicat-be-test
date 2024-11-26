@@ -187,12 +187,10 @@ jobs:
 
       - name: Publish package
         run: |
-          npm install --ignore-scripts 
-          npm run build                
-          cp ./README.md ./dist/README.md
-          cp ./package.json ./dist/package.json
-          cd ./tsconfig.esm.json ./dist/tsconfig.esm.json
-          npm publish ./dist --access public
+          npm install
+          npm run build
+          cd ./dist && 
+          npm publish
         working-directory: ./sdk/typescript-fetch/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
