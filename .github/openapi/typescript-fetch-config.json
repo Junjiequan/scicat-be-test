@@ -1,5 +1,5 @@
 {
-  "generatorName": "typescript-axios",
+  "generatorName": "typescript-fetch",
   "npmName": "@scicatproject/scicat-ts-fetch-test",
   "supportsES6": true
 }
