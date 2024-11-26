@@ -1,5 +1,5 @@
 {
-  "generatorName": "typescript-angular",
-  "npmName": "@scicatproject/scicat-ts-node-test",
+  "generatorName": "typescript-axios",
+  "npmName": "@scicatproject/scicat-ts-fetch-test",
   "supportsES6": true
 }

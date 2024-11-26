@@ -133,7 +133,7 @@ jobs:
       - start-backend-export-swagger
     strategy:
       matrix:
-        generator: [typescript-node]
+        generator: [typescript-axios]
 
     steps:
       - name: Checkout repository
@@ -152,7 +152,7 @@ jobs:
           config-file: .github/openapi/${{ matrix.generator }}-config.json
           command-args: |
             -o ./sdk/${{ matrix.generator }} $(
-            if [ "${{ matrix.generator }}" == "typescript-node" ]; then
+            if [ "${{ matrix.generator }}" == "typescript-axios" ]; then
               echo "--additional-properties=npmVersion=1.0.0";
             fi
             )
@@ -182,7 +182,7 @@ jobs:
       - name: Download TypeScript Angular SDK Artifact
         uses: actions/download-artifact@v4
         with:
-          name: sdk-typescript-node-${{github.sha}}
+          name: sdk-typescript-axios-${{github.sha}}
           path: ./sdk
 
       - name: Publish package
@@ -191,7 +191,7 @@ jobs:
           npm run build
           cd dist
           npm publish --access public
-        working-directory: ./sdk/typescript-node/
+        working-directory: ./sdk/typescript-axios/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
