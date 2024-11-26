@@ -129,7 +129,7 @@ jobs:
   generate-upload-sdk:
     runs-on: ubuntu-latest
     needs:
-      - build-release
+      # - build-release
       - start-backend-export-swagger
     strategy:
       matrix:
