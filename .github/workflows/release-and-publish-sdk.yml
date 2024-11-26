@@ -187,6 +187,10 @@ jobs:
 
       - name: Publish package
         run: |
+          npm install --ignore-scripts 
+          npm run build                
+          cp ./README.md ./dist/README.md
+          cp ./package.json ./dist/package.json
           npm publish ./dist --access public
         working-directory: ./sdk/typescript-fetch/
         env:
