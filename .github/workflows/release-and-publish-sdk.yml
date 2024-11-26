@@ -191,6 +191,7 @@ jobs:
           npm run build                
           cp ./README.md ./dist/README.md
           cp ./package.json ./dist/package.json
+          cd ./tsconfig.esm.json ./dist/tsconfig.esm.json
           npm publish ./dist --access public
         working-directory: ./sdk/typescript-fetch/
         env:
