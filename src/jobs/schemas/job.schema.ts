@@ -24,13 +24,6 @@ export class JobClass {
   _id: string;
 
   @ApiProperty({
-    type: String,
-    description: "Globally unique identifier of a job.",
-    readOnly: true,
-  })
-  id?: string;
-
-  @ApiProperty({
     description: "The email of the person initiating the job request.",
   })
   @Prop({ type: String, required: true })
