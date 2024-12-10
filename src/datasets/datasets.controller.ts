@@ -566,7 +566,7 @@ export class DatasetsController {
     description: "Input fields for the dataset to be created",
     required: true,
     schema: {
-      anyOf: [
+      oneOf: [
         { $ref: getSchemaPath(CreateRawDatasetObsoleteDto) },
         { $ref: getSchemaPath(CreateDerivedDatasetObsoleteDto) },
         { $ref: getSchemaPath(CreateDatasetDto) },
@@ -730,7 +730,7 @@ export class DatasetsController {
     description: "Input fields for the dataset that needs to be validated",
     required: true,
     schema: {
-      anyOf: [
+      oneOf: [
         { $ref: getSchemaPath(CreateRawDatasetObsoleteDto) },
         { $ref: getSchemaPath(CreateDerivedDatasetObsoleteDto) },
         { $ref: getSchemaPath(CreateDatasetDto) },
@@ -1244,7 +1244,7 @@ export class DatasetsController {
       "Fields that needs to be updated in the dataset. Only the fields that needs to be updated have to be passed in.",
     required: true,
     schema: {
-      anyOf: [
+      oneOf: [
         { $ref: getSchemaPath(PartialUpdateRawDatasetObsoleteDto) },
         { $ref: getSchemaPath(PartialUpdateDerivedDatasetObsoleteDto) },
         { $ref: getSchemaPath(PartialUpdateDatasetDto) },
@@ -1356,7 +1356,7 @@ export class DatasetsController {
       "Dataset object that needs to be updated. The whole dataset object with updated fields have to be passed in.",
     required: true,
     schema: {
-      anyOf: [
+      oneOf: [
         { $ref: getSchemaPath(UpdateRawDatasetObsoleteDto) },
         { $ref: getSchemaPath(UpdateDerivedDatasetObsoleteDto) },
         { $ref: getSchemaPath(UpdateDatasetDto) },
