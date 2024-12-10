@@ -190,12 +190,14 @@ jobs:
 
       - name: Publish package
         run: |
-          npm install
+          npm ci
           npm run build
+          echo "1 is this step error>? ${{ matrix.sdk_type }}"
           if [ "${{ matrix.sdk_type }}" == "typescript-angular" ]; then
             # publish dist folder for typescript-angular
             cd dist
           fi
+          echo "2 is this step error>?${{ matrix.sdk_type }}"
           npm publish
         working-directory: ./sdk/${{ matrix.sdk_type }}/
         env:
