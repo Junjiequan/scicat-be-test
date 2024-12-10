@@ -153,7 +153,7 @@ jobs:
           command-args: |
             -o ./sdk/${{ matrix.generator }} $(
             if ["${{ matrix.generator }}" == "typescript-angular" ] || [ "${{ matrix.generator }}" == "typescript-fetch"  ]; then
-              echo "--additional-properties=npmVersion=4.0.5";
+              echo "--additional-properties=npmVersion=4.5.5";
             fi
             )
 
@@ -190,7 +190,7 @@ jobs:
 
       - name: Publish package
         run: |
-          npm ci
+          npm install
           npm run build
           echo "1 is this step error>? ${{ matrix.sdk_type }}"
           if [ "${{ matrix.sdk_type }}" == "typescript-angular" ]; then
