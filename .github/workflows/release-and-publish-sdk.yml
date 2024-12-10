@@ -152,8 +152,8 @@ jobs:
           config-file: .github/openapi/${{ matrix.generator }}-config.json
           command-args: |
             -o ./sdk/${{ matrix.generator }} $(
-            if ["${{ matrix.generator }}" == "typescript-angular" ]; then
-              echo "--additional-properties=npmVersion=4.5.5";
+            if [ "${{ matrix.generator }}" == "typescript-angular" ] || [ "${{ matrix.generator }}" == "typescript-fetch"  ]; then
+              echo "--additional-properties=npmVersion=5.0.2";
             fi
             )
 
@@ -192,13 +192,11 @@ jobs:
         run: |
           npm install
           npm run build
-          echo "1 is this step error>? ${{ matrix.sdk_type }}"
           if [ "${{ matrix.sdk_type }}" == "typescript-angular" ]; then
             # publish dist folder for typescript-angular
             cd dist
           fi
-          echo "2 is this step error>?${{ matrix.sdk_type }}"
-          npm publish
+          npm publish --access public
         working-directory: ./sdk/${{ matrix.sdk_type }}/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
