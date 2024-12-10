@@ -152,7 +152,7 @@ jobs:
           config-file: .github/openapi/${{ matrix.generator }}-config.json
           command-args: |
             -o ./sdk/${{ matrix.generator }} $(
-            if ["${{ matrix.generator }}" == "typescript-angular" ] || [ "${{ matrix.generator }}" == "typescript-fetch"  ]; then
+            if ["${{ matrix.generator }}" == "typescript-angular" ]; then
               echo "--additional-properties=npmVersion=4.5.5";
             fi
             )
