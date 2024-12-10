@@ -2,5 +2,6 @@
   "generatorName": "typescript-angular",
   "npmName": "@scicatproject/scicat-sdk-ts-angular-test",
   "ngVersion": "16.2.12",
+  "npmVersion": "5.5.5",
   "withInterfaces": true
 }
