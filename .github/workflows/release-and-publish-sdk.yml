@@ -151,9 +151,11 @@ jobs:
           openapi-file: ./swagger-schema.json
           config-file: .github/openapi/${{ matrix.generator }}-config.json
           command-args: |
+            --git-repo-id scicat-backend-next \
+            --git-user-id SciCatProject \
             -o ./sdk/${{ matrix.generator }} $(
             if [ "${{ matrix.generator }}" == "typescript-angular" ] || [ "${{ matrix.generator }}" == "typescript-fetch"  ]; then
-              echo "--additional-properties=npmVersion=5.0.2";
+              echo "--additional-properties=npmVersion=5.4.2";
             fi
             )
 
@@ -169,8 +171,8 @@ jobs:
       matrix:
         sdk_type: [typescript-angular, typescript-fetch]
     environment:
-      name: npm-sdk-package
-      url: https://www.npmjs.com/package/@scicatproject/scicat-sdk-ts-${{ matrix.sdk_type }}
+      name: ${{ matrix.sdk_type }}-sdk-package
+      url: ${{ matrix.sdk_type == 'typescript-angular' && ' https://www.npmjs.com/package/@scicatproject/scicat-sdk-ts-angular-test' || ' https://www.npmjs.com/package/@scicatproject/scicat-sdk-ts-fetch-test' }}
 
     steps:
       - name: Checkout repository
@@ -193,7 +195,7 @@ jobs:
           npm install
           npm run build
           if [ "${{ matrix.sdk_type }}" == "typescript-angular" ]; then
-            # publish dist folder for typescript-angular
+            # publish dist folder for typescript-angular 
             cd dist
           fi
           npm publish --access public
