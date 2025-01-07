@@ -60,7 +60,7 @@ export class JobsService {
     filter: IFilters<JobDocument, FilterQuery<JobDocument>>,
   ): Promise<JobClass[]> {
     const filterQuery: FilterQuery<JobDocument> =
-      createFullqueryFilter<JobDocument>(this.jobModel, "id", filter.fields);
+      createFullqueryFilter<JobDocument>(this.jobModel, "jobId", filter.fields);
     const modifiers: QueryOptions = parseLimitFilters(filter.limits);
 
     return await this.jobModel.find(filterQuery, null, modifiers).exec();
@@ -75,7 +75,7 @@ export class JobsService {
     const pipeline: PipelineStage[] = createFullfacetPipeline<
       JobDocument,
       FilterQuery<JobDocument>
-    >(this.jobModel, "id", fields, facets);
+    >(this.jobModel, "jobId", fields, facets);
 
     return await this.jobModel.aggregate(pipeline).exec();
   }
@@ -129,7 +129,7 @@ export class JobsService {
       domainName: this.domainName,
       subject: `Your ${jobType} job submitted successfully`,
       jobSubmissionNotification: {
-        jobId: context.instance.id,
+        jobId: context.instance.jobId,
         jobType,
         jobData,
       },
@@ -148,7 +148,7 @@ export class JobsService {
     // Iterate through list of jobs that were updated
     // Iterate in case of bulk update send out email to each job
     context.hookState.oldData.forEach(async (oldData) => {
-      const currentData = await this.findOne({ id: oldData.id });
+      const currentData = await this.findOne({ id: oldData.jobId });
       //Check that statusMessage has changed. Only run on finished job
       if (
         currentData &&
@@ -161,7 +161,7 @@ export class JobsService {
         const to = currentData.emailJobInitiator;
         const {
           type: jobType,
-          id: jobId,
+          jobId: jobId,
           jobStatusMessage,
           jobResultObject,
         } = currentData;
