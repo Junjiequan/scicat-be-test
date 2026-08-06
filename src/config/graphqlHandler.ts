@@ -10,7 +10,9 @@ type ResponseType = {
 /*
 const responseProcessor = (response: Record<string, unknown>) => {
   const proposals = (response as ResponseType).data.userByOIDCSub?.proposals;
-
+  if (!proposals) return [];
+  return proposals.map((proposal) => proposal.proposalId);......dsdasd
+};
 */
 
 export class graphHandler {
